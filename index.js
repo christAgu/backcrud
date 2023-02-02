@@ -22,7 +22,7 @@ app.use(cors());
   });
 
 app.get('/', function (req, res) {
-    res.send(`hello ${name}`)
+    res.json(`hello u are connected`)
 })
 
 //check db connection 
@@ -42,8 +42,8 @@ app.get('/user', function (req, res) {
         if (err) {
             console.log(err, 'err fecthing data');
         }
-        if (result.length > 0) {
-            res.send({
+        if (result) {
+            res.json({
                 message: "data fethed",
                 data: result,
 
@@ -64,7 +64,7 @@ app.get('/user/:id', (req, res) => {
             console.log(err, 'err fecthing single id ')
         }
 
-        if (result.length > 0) {
+        if (result) {
 
             res.send({
                 message: `user with the  id ${id} fecthed `,

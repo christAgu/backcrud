@@ -14,24 +14,32 @@ app.use(cors());
 //connext database
 
 
-  var db  = mysql.createConnection({
-    	host     : process.env.MYSQL_ADDON_HOST,
-    	database : process.env.MYSQL_ADDON_DB,
-    	user     : process.env.MYSQL_ADDON_USER,
-    	password : process.env.MYSQL_ADDON_PASSWORD
-  });
 
-app.get('/', function (req, res) {
-    res.json(`hello u are connected`)
-})
 
-//check db connection 
-db.connect(err => {
-    if (err) {
-        console.log(err, 'db failed');
-    } else
-        console.log('connected to databse  succesfully');
-})
+var hostname = "efs.h.filess.io";
+var database = "user_sizebroken";
+var port = "3307";
+var username = "user_sizebroken";
+var password = "938f499111b011ade8a888d870ceb9cc1c7e2f6d";
+
+var con = mysql.createConnection({
+  host: hostname,
+  user: username,
+  password,
+  database,
+  port,
+});
+
+con.connect(function (err) {
+  if (err) throw err;
+  console.log("Connected!");
+});
+
+con.query("SELECT 1+1").on("result", function (row) {
+  console.log(row);
+});
+
+
 
 //get all data
 
